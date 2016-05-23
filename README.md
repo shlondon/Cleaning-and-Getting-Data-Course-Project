@@ -21,7 +21,7 @@ The data directory includes the following files:
 
 - 'test/subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
 
-Main steps in run_analysis.R script
+**Main steps in run_analysis.R script**
 
 1. it up data into R environment from data directory with named appropriately
 2. it give names to train and test data.frames with the names stored in features data.frame
@@ -31,6 +31,6 @@ Main steps in run_analysis.R script
 6. it creates a new vector with activity name
 7. it creates a new vector with participants in the samsung´s experiment
 8. it creates a independent tidy data set with the average of each variable for each activity and each subject.
-9. it creaates a create a tidy_data.txt file
+9. it creates a create a *tidy_data.txt* file
 
 
