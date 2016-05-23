@@ -13,14 +13,14 @@ subject_test <- read.table("data/test/subject_test.txt")
 names(train) <- features$V2
 names(test) <- features$V2
 
-#1.  Merges the training and the test sets to create one data set.
+#Merges the training and the test sets to create one data set.
 bd1 <- rbind.data.frame(train, test)
 
-#2. Extracts only the measurements on the mean and standard deviation for each measurement.
+#Extracts only the measurements on the mean and standard deviation for each measurement.
 bd2 <- bd1[,grepl("-mean()|-std()", names(bd1))]
 bd2 <- bd2[,!grepl("meanFreq()", names(bd2))]
 
-#3. Uses descriptive activity names to name the activities in the data set
+#Uses descriptive activity names to name the activities in the data set
 #I created a new vector with activity code
 x <- rbind(train_label, test_label)
 bd3 <- cbind.data.frame(bd2, x)
@@ -53,13 +53,13 @@ y <- sapply(1:10299, function(x){
 bd3 <- cbind.data.frame(bd3, y)
 names(bd3)[68] <- "activity_name"
 
-#4. Appropriately labels the data set with descriptive variable names.
+#Appropriately labels the data set with descriptive variable names.
 #I created a new vector with participants in the samsung´s experiment
 bd4 <- cbind.data.frame(bd3, rbind(subject_train, subject_test))
 names(bd4)[69] <- "subject"
 bd4$subject <- as.factor(bd4$subject)
 
-#5. From the data set in step 4, creates a second, independent tidy data set with 
+#From the data set in step 4, creates a second, independent tidy data set with 
 #the average of each variable for each activity and each subject.
 
 #I load a nice package to manipulate complex data and to create tidy data
@@ -79,7 +79,7 @@ tidy_data <- summarise_each(tidy_data, funs(mean))
 #Prin tidy_data
 View(tidy_data)
 
-#This code create a tidy data that follow submit instructions
+#This code create a tidy data that follows instructions of send
 write.table(tidy_data, "tidy_data.txt", row.names = F)
 
 
