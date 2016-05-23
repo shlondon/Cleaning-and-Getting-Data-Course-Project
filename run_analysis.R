@@ -1,11 +1,11 @@
-train <- read.table("train/X_train.txt")
-train_label <- read.table("train/y_train.txt")
-features <- read.table("features.txt")
-test <- read.table("test/X_test.txt")
-test_label <- read.table("test/y_test.txt")
-activity_label <- read.table("activity_labels.txt")
-subject_train <- read.table("train/subject_train.txt")
-subject_test <- read.table("test/subject_test.txt")
+train <- read.table("data/train/X_train.txt")
+train_label <- read.table("data/train/y_train.txt")
+features <- read.table("data/features.txt")
+test <- read.table("data/test/X_test.txt")
+test_label <- read.table("data/test/y_test.txt")
+activity_label <- read.table("data/activity_labels.txt")
+subject_train <- read.table("data/train/subject_train.txt")
+subject_test <- read.table("data/test/subject_test.txt")
 
 names(train) <- features$V2
 names(test) <- features$V2
@@ -72,5 +72,12 @@ tidy_data <- group_by(bd4, activity_name, subject) %>% select(1:66)
 tidy_data <- summarise_each(tidy_data, funs(mean))
 
 #Se imprime el tidy data
-tidy_data
+View(tidy_data)
+
+#Se crea un archivo tipo txt con el tidy data para ser usado posteriormente en el análisis
+#Estadístico, se crea siguiendo las especificaciones de envio que propone coursera
+write.table(tidy_data, "tidy_data.txt", row.names = F)
+
+
+
 
